@@ -2,12 +2,13 @@ import { useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
+
 export const MainView = () => {
     const [movies, setMovies] = useState([
         { 
             id: 1, 
             title: "Rush Hour",
-            image: "",
+            image: "https://m.media-amazon.com/images/I/61kGlPSpkKL._AC_UF894,1000_QL80_.jpg",
             director: "Brett Ratner",
             genre: "Action"
  
@@ -15,7 +16,7 @@ export const MainView = () => {
         { 
             id: 2, 
             title: "Inception",
-            image: "",
+            image: "https://m.media-amazon.com/images/I/912AErFSBHL._AC_UF894,1000_QL80_.jpg",
             director: "Christopher Nolan",
             genre: "Sci-Fi"
   
@@ -23,7 +24,7 @@ export const MainView = () => {
         { 
             id: 3, 
             title: "Spirited Away",
-            image: "",
+            image: "https://m.media-amazon.com/images/I/710ievVCTTL._AC_UF894,1000_QL80_.jpg",
             director: "Hayao Miyazaki",
             genre: "Fantasy"
   
