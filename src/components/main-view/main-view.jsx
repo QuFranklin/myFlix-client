@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 
 export const MainView = () => {
-    const [movies, setMovies] = useState([
-        { 
+    const [movies, setMovies] = useState([]);
+        /**{ 
             id: 1, 
             title: "Rush Hour",
             image: "https://m.media-amazon.com/images/I/61kGlPSpkKL._AC_UF894,1000_QL80_.jpg",
@@ -29,9 +29,27 @@ export const MainView = () => {
             genre: "Fantasy"
   
         }
-    ]);
+        */
 
     const [selectedMovie, setSelectedMovie] = useState(null);
+    
+    useEffect(() => {
+        fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies")
+            .then((response) => response.json())
+            .then((movies) => {
+                const moviesApi = movies.map((movie) => {
+                    return {
+                        id: movie._id,
+                        title: movie.title,
+                        description: movie.description,
+                        imagePath: movie.imagePath,
+                        genre: movie.genre,
+                        director: movie.director
+                    };
+                });
+                setMovies(moviesApi);
+            })
+    }, []);
 
 
     if (selectedMovie) {
@@ -51,7 +69,7 @@ export const MainView = () => {
             <MovieCard 
                 key={movie.id} 
                 movie={movie}
-                onClick={() => {
+                onClick={(movie) => {
                     setSelectedMovie(movie);
                 }} 
             />
