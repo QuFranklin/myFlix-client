@@ -9,9 +9,16 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
     
     useEffect(() => {
-        fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies")
+        if (!token) {
+            return;
+        }
+
+        fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
+            headers: { Authorization: 'Bearer ${token}' }
+        })
             .then((response) => response.json())
             .then((movies) => {
                 const moviesApi = movies.map((movie) => {
@@ -26,10 +33,17 @@ export const MainView = () => {
                 });
                 setMovies(moviesApi);
             })
-    }, []);
+    }, [token]);
     
     if (!user) {
-        return <LoginView onLoggedIn={(user) => setUser(user)} />;
+        return (
+            <LoginView 
+                onLoggedIn={(user) => {
+                setUser(user);
+                setToken(token);
+        }}
+        />
+        );
     }
 
     if (selectedMovie) {
