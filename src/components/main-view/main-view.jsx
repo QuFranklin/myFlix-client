@@ -15,7 +15,6 @@ export const MainView = () => {
         if (!token) {
             return;
         }
-
         fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
             headers: { Authorization: 'Bearer ${token}' }
         })
@@ -39,9 +38,8 @@ export const MainView = () => {
         return (
             <LoginView 
                 onLoggedIn={(user) => {
-                setUser(user);
-                setToken(token);
-        }}
+                setUser(user)
+        }} 
         />
         );
     }
@@ -54,7 +52,16 @@ export const MainView = () => {
  
 
     if (movies.length === 0 ) {
-        return <div>The list is empty</div>;
+        return (
+            <>
+            <button 
+            onClick={() => {
+                setUser(null);
+            }}
+            >Logout</button>
+        <div>The list is empty</div>
+        </>
+        );
     }
     
     return (
