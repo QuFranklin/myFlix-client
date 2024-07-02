@@ -1,7 +1,4 @@
-
 import { useState } from "react";
-
-
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
@@ -11,19 +8,28 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
     const data = {
-        access: username,
-        secret: password
+        Username: username,
+        Password: password
     };
-    fetch("https://openlibrary.org/account/login.json", {
-      method: "POST",
-      body: JSON.stringify(data)
-    }).then((response) => {
-        if (response.ok) {
-          onLoggedIn(username);
-        } else {
-          alert("Login failed");
-        }
-    });
+    fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+        .then((data) => {
+            console.log("Login response: ", data);
+            if (data.user) {
+              onLoggedIn(data.user, data.token);
+            } else {
+              alert("No such user");
+            }
+        })
+        .catch((e) => {
+          alert("Something went wrong");
+        });
 };
 
 return (
@@ -34,7 +40,8 @@ return (
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         minLength={5}
-        required />
+        required 
+        />
       </label>
       <label>
         Password:
@@ -42,7 +49,8 @@ return (
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         minLength={6}
-        required />
+        required 
+        />
       </label>
       <button type="submit">Submit</button>
     </form>
