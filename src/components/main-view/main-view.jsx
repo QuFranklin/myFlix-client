@@ -38,9 +38,10 @@ export const MainView = () => {
         return (
             <LoginView 
                 onLoggedIn={(user) => {
-                setUser(user)
-        }} 
-        />
+                setUser(user);
+                setToken(token);
+                }} 
+            />
         );
     }
 
@@ -54,13 +55,14 @@ export const MainView = () => {
     if (movies.length === 0 ) {
         return (
             <>
-            <button 
-            onClick={() => {
-                setUser(null);
-            }}
-            >Logout</button>
-        <div>The list is empty</div>
-        </>
+                <div>The list is empty</div>
+                <button 
+                    onClick={() => {
+                        setUser(null);
+                    }}
+                    >Logout
+                </button>  
+            </>
         );
     }
     
