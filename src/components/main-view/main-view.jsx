@@ -2,46 +2,44 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
 
 
 export const MainView = () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(storedUser? storedUser : null);
+    const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
     
     useEffect(() => {
         if (!token) {
             return;
         }
         fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: 'Bearer ${token}' },
         })
             .then((response) => response.json())
             .then((movies) => {
-                const moviesApi = movies.map((movie) => {
-                    return {
-                        id: movie._id,
-                        title: movie.title,
-                        description: movie.description,
-                        imagePath: movie.imagePath,
-                        genre: movie.genre,
-                        director: movie.director
-                    };
-                });
-                setMovies(moviesApi);
+                
+                setMovies(movies);
             })
     }, [token]);
     
     if (!user) {
         return (
-            <LoginView 
-                onLoggedIn={(user) => {
-                setUser(user);
-                setToken(token);
-                }} 
-            />
+            <>Login
+                <LoginView 
+                    onLoggedIn={(user, token) => {
+                    setUser(user);
+                    setToken(token);
+                    }} 
+                />
+                Sign Up
+                <SignupView />
+            </>
         );
     }
 
@@ -77,7 +75,12 @@ export const MainView = () => {
                 }} 
             />
         ))}
-        <button onClick={() => { setUser(null); }}>Logout</button>
+        <button onClick={() => { 
+            setUser(null); 
+            setToken(null); 
+            localStorage.clear(); 
+            }}>Logout
+        </button>
       </div>
     );
 };
