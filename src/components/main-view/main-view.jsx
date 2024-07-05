@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -19,13 +20,22 @@ export const MainView = () => {
             return;
         }
         fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
-            headers: { Authorization: 'Bearer ${token}' },
+            headers: { Authorization: 'Bearer ${token}' }
         })
             .then((response) => response.json())
             .then((movies) => {
-                
-                setMovies(movies);
-            })
+                const moviesApi = movies.map((movie) => {
+                    return {
+                        id: movie._id,
+                        title: movie.title,
+                        description: movie.description,
+                        imagePath: movie.imagePath,
+                        genre: movie.genre,
+                        director: movie.director
+                    };
+                });
+                setMovies(moviesApi);
+            });
     }, [token]);
     
     if (!user) {
@@ -70,8 +80,8 @@ export const MainView = () => {
             <MovieCard 
                 key={movie.id} 
                 movie={movie}
-                onClick={(movie) => {
-                    setSelectedMovie(movie);
+                onClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
                 }} 
             />
         ))}
