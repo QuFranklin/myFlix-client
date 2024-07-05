@@ -16,11 +16,10 @@ export const MainView = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
     
     useEffect(() => {
-        if (!token) {
-            return;
-        }
+        if (!token) return;
+        
         fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: 'Bearer ${token}' },
         })
             .then((response) => response.json())
             .then((movies) => {
@@ -66,9 +65,10 @@ export const MainView = () => {
                 <div>The list is empty</div>
                 <button 
                     onClick={() => {
-                        setUser(null);
-                    }}
-                    >Logout
+                        setUser(null); 
+                        setToken(null); 
+                        localStorage.clear(); 
+                    }}>Logout
                 </button>  
             </>
         );
