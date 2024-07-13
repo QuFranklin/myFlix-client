@@ -19,7 +19,7 @@ export const MainView = () => {
         if (!token) return;
         
         fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
-            headers: { Authorization: 'Bearer ${token}' },
+            headers: { Authorization: 'Bearer ${token}' }
         })
             .then((response) => response.json())
             .then((movies) => {
@@ -34,6 +34,8 @@ export const MainView = () => {
                     };
                 });
                 setMovies(moviesApi);
+            }).catch((e) => {
+                console.log(e);
             });
     }, [token]);
     
