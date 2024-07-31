@@ -45,6 +45,7 @@ export const ProfileUpdate = ({user, updatedUser}) => {
                 setPassword(data.Password);
                 setEmail(data.Email);
                 setBirthday(data.Birthday);
+                window.location.reload();
             })
             .catch((e) => {
                 console.log(e);
