@@ -109,6 +109,7 @@ export const MainView = () => {
                                                     user={user}
                                                     token={token}
                                                     updatedUser={updatedUser}
+                                                    onLoggedOut={onLoggedOut}
                                                 />
                                             </Col>
                                         )}
