@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { Button, Card, Row } from "react-bootstrap";
 import './movie-view.scss';
 
 export const MovieView = ({ movies, user, token, setUser }) => {
@@ -61,38 +61,27 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         });       
     };
     return (
-        <div>
-            <div>
-                <img className="w-100" src={movie.imagePath} />
-            </div>
-            <div>
-                <span>Title: </span>
-                <span>{movie.title}</span>
-            </div>
-            <div>
-                <span>Director: </span>
-                <span>{movie.director.name}</span>
-                <span> - </span>
-                <span>{movie.director.bio}</span>
-            </div>
-            <div>
-                <span>Genre: </span>
-                <span>{movie.genre.name}</span>
-            </div>
-            <div>
-                <span>Description: <br /></span>
-                <span>{movie.description}</span>
-            </div>
+        
+        <Card className="h-100 w-100">
+        <Card.Img variant="top" src={movie.imagePath} />
+            <Card.Body>
+               <Card.Header className="text-center fs-1">{movie.title}</Card.Header>
+               <br></br>
+                    <Card.Text><strong>Director</strong> - {movie.director.name}</Card.Text>
+                    <Card.Text><strong>Genre</strong> - {movie.genre.name}</Card.Text>
+                    <Card.Text><strong>Description</strong> - {movie.description}</Card.Text>
             <Link to={`/`}>
                 <button className="back-button">Back</button>
-            </Link>
+            </Link>  
             <div>
                 {isFavorite ? (
-                    <Button onClick={removefromFavorite}>Remove from favorite</Button>
+                    <Button variant="danger" onClick={removefromFavorite}>Remove from favorite</Button>
                 ) : (
-                    <Button onClick={addtoFavorite}>Add to favorite</Button>   
+                    <Button variant="primary" onClick={addtoFavorite}>Add to favorite</Button>   
                 )}
             </div>
-        </div>
-    );
-};
+            </Card.Body>
+        </Card>
+        
+    )
+}
