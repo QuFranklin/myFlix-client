@@ -22,7 +22,6 @@ export const ProfileView = ({user, updatedUser}) => {
                         <ProfileUpdate
                             user={user}
                             updatedUser={updatedUser}
-                            
                         />
                         </Card.Body>
                     </Card>
