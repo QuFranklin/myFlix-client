@@ -93,10 +93,13 @@ export const ProfileUpdate = ({user, updatedUser}) => {
                   onChange={(e) => setBirthday(e.target.value)}
                   required
               />
-            </Form.Group>  
-          <Button variant="primary" type="submit" size="sm">
-            Edit Profile
-          </Button>
+            </Form.Group>
+            <br></br>
+            <div className="d-grid gap-2">  
+                <Button variant="primary" type="submit">
+                    Edit Profile
+                </Button>
+          </div>
         </Form>
     )
 };  
