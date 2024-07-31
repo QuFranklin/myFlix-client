@@ -26,7 +26,7 @@ export const MainView = () => {
         }
     
         fetch("https://moviesdb-6abb3284c2fb.herokuapp.com/movies", {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => response.json())
             .then((movies) => {
@@ -46,9 +46,25 @@ export const MainView = () => {
             });
     }, [token]);
     
+    const onLoggedIn = (user, token) => {
+        setUser(user);
+        setToken(token);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", token);
+    }
+    const onLoggedOut = () => {
+        setUser(null);
+        setToken(null);
+        localStorage.clear();
+    }
+    const updatedUser = user => {
+        setUser(user);
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+    
         return (
             <BrowserRouter>
-            <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear()}} />
+            <NavigationBar user={user} onLoggedOut={onLoggedOut} />
                 <Row className="justify-content-md-center">
                     <Routes>
                         <Route
@@ -60,12 +76,7 @@ export const MainView = () => {
                                     ) : (
                                         <Col md={5}>
                                             <LoginView 
-                                                onLoggedIn={(user, token) => {
-                                                    setUser(user);
-                                                    setToken(token);
-                                                    localStorage.setItem("user", JSON.stringify(user));
-                                                    localStorage.setItem("token", token);
-                                                    }} 
+                                                onLoggedIn={onLoggedIn} 
                                             />
                                         </Col>
                                     )}
@@ -87,14 +98,18 @@ export const MainView = () => {
                                 }
                             />
                             <Route
-                                path="/profile"
+                                path="/users/:Username"
                                 element={
                                     <>
                                         {!user ? (
                                             <Navigate to="/login" replace />
                                         ) : (
                                             <Col md={5}>
-                                                <ProfileView />
+                                                <ProfileView 
+                                                    movies={movies}
+                                                    user={user}
+                                                    updatedUser={updatedUser}
+                                                />
                                             </Col>
                                         )}
                                     </>
@@ -113,7 +128,9 @@ export const MainView = () => {
                                                     <MovieView 
                                                     movies={movies}
                                                     user={user}
-                                                    token={token}  />
+                                                    token={token}
+                                                    setUser={setUser}  
+                                                    />
                                                 </Col>
                                         )}
                                     </>
