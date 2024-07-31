@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { UserInfo } from './user-info';
 import { ProfileUpdate } from './profile-update';
 
-export const ProfileView = ({user, updatedUser}) => {
+export const ProfileView = ({user, token, updatedUser}) => {
     
     return (
         <Container>
@@ -21,6 +21,7 @@ export const ProfileView = ({user, updatedUser}) => {
                         <Card.Body>
                         <ProfileUpdate
                             user={user}
+                            token={token}
                             updatedUser={updatedUser}
                         />
                         </Card.Body>
