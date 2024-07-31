@@ -53,7 +53,7 @@ export const ProfileUpdate = ({user, updatedUser}) => {
   
     return (
         <Form onSubmit={handleSubmit}>
-            <h2 className='fw-bold'>Update Info</h2>
+            <h2>Update Info</h2>
             <Form.Group controlId="formUsername">
               <Form.Label>Username:</Form.Label>
               <Form.Control
