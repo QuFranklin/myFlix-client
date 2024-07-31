@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 
 export const UserInfo = ({ email, name }) => {
-    
     return (
         <>
             <h2> Account Information</h2>
