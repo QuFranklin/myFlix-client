@@ -92,7 +92,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
                 ) : (
                     <Button onClick={addtoFavorite}>Add to favorite</Button>   
                 )}
-            
             </div>
         </div>
     );
