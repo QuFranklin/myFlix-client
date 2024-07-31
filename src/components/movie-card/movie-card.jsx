@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
-
 export const MovieCard = ({ movie }) => {
+    
     return (
         <Card className="h-100">
         <Card.Img variant="top" src={movie.imagePath} />
@@ -18,7 +17,7 @@ export const MovieCard = ({ movie }) => {
             </Card.Body>
         </Card>
     );
-  };
+};
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
