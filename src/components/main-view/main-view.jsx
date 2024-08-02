@@ -74,7 +74,7 @@ export const MainView = () => {
                 setMoviesSearch={setMoviesSearch}
             />
             <Container className="mt-5">
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center mt-2">
                     <Routes>
                         <Route
                             path="/login"
@@ -91,23 +91,23 @@ export const MainView = () => {
                                     )}
                                 </>
                             }
-                            />
-                            <Route
-                                path="/signup"
-                                element={
-                                    <>
-                                        {user ? (
-                                            <Navigate to="/" />
-                                        ) : (
-                                            <Col md={5}>
-                                                <SignupView />
-                                            </Col>
-                                        )}
-                                    </>
+                        />
+                        <Route
+                            path="/signup"
+                            element={
+                                <>
+                                    {user ? (
+                                        <Navigate to="/" />
+                                    ) : (
+                                        <Col md={5}>
+                                            <SignupView />
+                                        </Col>
+                                    )}
+                                </>
                                 }
-                            />
-                            <Route
-                                path="/users/:Username"
+                        />
+                        <Route
+                            path="/users/:Username"
                                 element={
                                     <>
                                         {!user ? (
@@ -123,10 +123,10 @@ export const MainView = () => {
                                             </Col>
                                         )}
                                     </>
-                                }
-                            />
-                            <Route
-                                path="/movies/:movieId"
+                            }
+                        />
+                        <Route
+                            path="/movies/:movieId"
                                 element={
                                     <>
                                         {!user ? (
@@ -144,39 +144,39 @@ export const MainView = () => {
                                                 </Col>
                                         )}
                                     </>
-                                }
-                            />
-                            <Route
-                                path="/"
-                                element={
-                                    <>
-                                        {!user ? (
-                                            <Navigate to="/login" replace />
-                                        ) : onMoviesSearch.length === 0 ? (
-                                            <Col>The list is empty</Col>
-                                        ) : (
-                                            <>
-                                            {onMoviesSearch.map((movie) => (
-                                                <Col
-                                                    className="mb-5"
-                                                    key={movie.id}
-                                                    xs={12}
-                                                    sm={6}
-                                                    md={4}
-                                                    lg={4} >
-                                                    <MovieCard
-                                                        movie={movie}
-                                                    />
-                                                </Col>
-                                            ))}
+                            }
+                        />
+                        <Route
+                            path="/"
+                            element={
+                                <>
+                                    {!user ? (
+                                        <Navigate to="/login" replace />
+                                    ) : onMoviesSearch.length === 0 ? (
+                                        <Col>The list is empty</Col>
+                                    ) : (
+                                        <>
+                                        {onMoviesSearch.map((movie) => (
+                                            <Col
+                                                className="mb-5"
+                                                key={movie.id}
+                                                xs={12}
+                                                sm={6}
+                                                md={4}
+                                                lg={4} >
+                                                <MovieCard
+                                                    movie={movie}
+                                                />
+                                            </Col>
+                                        ))}
                                         </>
-                                        )}
-                                    </>
-                                }
-                            />
+                                    )}
+                                 </>
+                            }
+                        />
                     </Routes>
                 </Row>
-                </Container>
+            </Container>
             </BrowserRouter>
         );
 }
