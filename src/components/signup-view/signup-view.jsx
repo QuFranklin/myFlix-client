@@ -41,7 +41,7 @@ export const SignupView = () => {
             <Col>
               <Card className="login-card">
                 <Card.Body>
-                  <Card.Title>Login</Card.Title>
+                  <Card.Title>Sign Up</Card.Title>
                   <Form.Group controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
