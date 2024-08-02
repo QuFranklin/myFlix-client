@@ -7,14 +7,18 @@ export const MovieCard = ({ movie }) => {
     
     return (
         <Card className="h-100">
+            
         <Card.Img variant="top" src={movie.imagePath} />
             <Card.Body>
-                <Card.Title>{movie.title}</Card.Title>
-                <Card.Text>{movie.director.name}</Card.Text>
+                <div className="d-flex justify-content-center">
+                    <Card.Title>{movie.title}</Card.Title>
+                </div>
+                <Card.Text>{movie.description}</Card.Text>
                 <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-                    <Button variant="link">Open</Button>
+                    <Button variant="outline-primary">More Info</Button>
                 </Link>
             </Card.Body>
+            
         </Card>
     );
 };
