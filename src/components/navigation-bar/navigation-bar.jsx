@@ -1,14 +1,13 @@
 import { Navbar, Container, Nav, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch }) => {
-  
-  
   return (
-    <Navbar className="sticky-navbar" fixed="top" bg="light" expand="lg">
+    <Navbar className="nav-bar mb-4" fixed="top" bg="light" expand="lg" >
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Movies App
+          Nighttime Flix
         </Navbar.Brand> 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -34,7 +33,7 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </>
             )} 
-            <Form className="d-flex justify-content-end"> 
+            <Form className="d-flex align-items-right"> 
               <Form.Control
                   className="me-4"
                   type="search"
