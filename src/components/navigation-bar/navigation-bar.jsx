@@ -7,7 +7,7 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch
     <Navbar className="nav-bar" bg="light" expand="lg" >
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Nighttime Flix
+          NightTime Flix
         </Navbar.Brand> 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
