@@ -73,7 +73,7 @@ export const MainView = () => {
                 moviesSearch={moviesSearch}
                 setMoviesSearch={setMoviesSearch}
             />
-            <Container>
+            <Container className="mt-4">
                 <Row className="justify-content-md-center">
                     <Routes>
                         <Route
