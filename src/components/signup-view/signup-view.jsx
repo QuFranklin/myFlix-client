@@ -1,6 +1,5 @@
 import{ useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import {Container, Form, Button, Card, Row, Col} from "react-bootstrap";
 
 
 export const SignupView = () => {
@@ -36,50 +35,59 @@ export const SignupView = () => {
     };
   
     return (
+      <Container className="d-flex justify-content-center align-items-center vh-100">
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  minLength="5"
-              />
-            </Form.Group>  
-            
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-              />
-            </Form.Group>
-            
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-              />
-            </Form.Group>
-          
-            <Form.Group controlId="formBirthday">
-              <Form.Label>Birthday:</Form.Label>
-              <Form.Control
-                  type="date"
-                  value={birthday}
-                  onChange={(e) => setBirthday(e.target.value)}
-                  required
-              />
-            </Form.Group>  
-          <Button variant="primary" type="submit">
-            Sign Up
-          </Button>
-        </Form>
+          <Row>
+            <Col>
+              <Card className="login-card">
+                <Card.Body>
+                  <Card.Title>Login</Card.Title>
+                  <Form.Group controlId="formUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        minLength="5"
+                    />
+                  </Form.Group>  
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formEmail">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBirthday">
+                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Control
+                        type="date"
+                        value={birthday}
+                        onChange={(e) => setBirthday(e.target.value)}
+                        required
+                    />
+                  </Form.Group>  
+                  <Button className="mt-4" variant="primary" type="submit">
+                      Sign Up
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Form>     
+      </Container>
+        
     )
 };
