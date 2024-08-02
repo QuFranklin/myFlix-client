@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { Button, Card, Row } from "react-bootstrap";
-import './movie-view.scss';
+import { Button, Card } from "react-bootstrap";
+
 
 export const MovieView = ({ movies, user, token, setUser }) => {
     const { movieId } = useParams();
@@ -71,13 +71,15 @@ export const MovieView = ({ movies, user, token, setUser }) => {
                     <Card.Text><strong>Genre</strong> - {movie.genre.name}</Card.Text>
                     <Card.Text><strong>Description</strong> - {movie.description}</Card.Text>
             <Link to={`/`}>
-                <button className="back-button">Back</button>
+                <Button variant="primary">Back to movies</Button>
             </Link>  
-            <div className="mt-1"> 
+            <div className="mt-2"> 
                 {isFavorite ? (
                     <Button variant="danger" onClick={removefromFavorite}>Remove from favorite</Button>
+                    
                 ) : (
-                    <Button variant="primary" onClick={addtoFavorite}>Add to favorite</Button>   
+                    <Button variant="primary" onClick={addtoFavorite}>Add to favorite</Button>  
+                     
                 )}
             </div>
             </Card.Body>
