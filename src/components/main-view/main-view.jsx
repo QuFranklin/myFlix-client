@@ -8,6 +8,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { Container, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./main-view.scss";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -73,7 +74,7 @@ export const MainView = () => {
                 moviesSearch={moviesSearch}
                 setMoviesSearch={setMoviesSearch}
             />
-            <Container className="mt-5">
+            <Container className="mt-2">
                 <Row className="justify-content-md-center mt-4">
                     <Routes>
                         <Route
