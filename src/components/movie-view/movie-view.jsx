@@ -71,7 +71,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
                     <Card.Text><strong>Genre</strong> - {movie.genre.name}</Card.Text>
                     <Card.Text><strong>Description</strong> - {movie.description}</Card.Text>
             <Link to={`/`}>
-                <Button variant="primary">Back to movies</Button>
+                <Button variant="outline-primary">Back to movies</Button>
             </Link>  
             <div className="mt-2"> 
                 {isFavorite ? (
