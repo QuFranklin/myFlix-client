@@ -74,7 +74,7 @@ export const MainView = () => {
                 setMoviesSearch={setMoviesSearch}
             />
             <Container className="mt-5">
-                <Row className="justify-content-md-center mt-2">
+                <Row className="justify-content-md-center mt-4">
                     <Routes>
                         <Route
                             path="/login"
